@@ -13,8 +13,10 @@
       <thead>
       <tr>
         <th style="background-color: #eeeeee; text-align: center;">이름</th>
-        <th style="background-color: #eeeeee; text-align: center;">총 잃은 돈</th>
+        <th style="background-color: #eeeeee; text-align: center;">잃은 돈</th>
         <th style="background-color: #eeeeee; text-align: center;">진 횟수</th>
+        <th style="background-color: #eeeeee; text-align: center;">홈런</th>
+        <th style="background-color: #eeeeee; text-align: center;">병살</th>
       </tr>
       </thead>
         <tr th:each="dto : ${list}">
@@ -22,6 +24,8 @@
           <!-- <td th:text="${dto.getMember_money()}"></td> -->
           <td th:text="${#numbers.formatInteger(dto.getMember_money(), 0, 'COMMA')}"></td>
           <td th:text="${dto.getMember_count()}"></td>
+          <td th:text="${dto.getHome_run()}"></td>
+          <td th:text="${dto.getDouble_out()}"></td>
         </tr>
     </table>
   </div>

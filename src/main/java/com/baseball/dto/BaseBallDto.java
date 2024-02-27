@@ -10,4 +10,7 @@ public class BaseBallDto {
     private String member_name;
     private int member_money;
     private String member_count;
+
+    private String home_run;
+    private String double_out;
 }
