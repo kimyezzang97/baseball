@@ -19,7 +19,8 @@
       </thead>
         <tr th:each="dto : ${list}">
           <td th:text="${dto.getMember_name()}"></td>
-          <td th:text="${dto.getMember_money()}"></td>
+          <!-- <td th:text="${dto.getMember_money()}"></td> -->
+          <td th:text="${#numbers.formatInteger(dto.getMember_money(), 0, 'COMMA')}"></td>
           <td th:text="${dto.getMember_count()}"></td>
         </tr>
     </table>
