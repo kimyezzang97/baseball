@@ -15,6 +15,7 @@
                mvp_cnt,
                IFNULL(round((hit_cnt / try_cnt), 3), 0) as average
         from member
+        order by member_money desc, member_count desc, average desc, home_run desc , mvp_cnt desc
         ]]>
     </select>
 </mapper>
