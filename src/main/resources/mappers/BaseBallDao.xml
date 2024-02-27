@@ -6,8 +6,15 @@
 <mapper namespace="com.baseball.dao.BaseBallDao">
     <select id="findAll" resultType="com.baseball.dto.BaseBallDto">
         <![CDATA[
-            SELECT *
-            FROM member
+        select member_num,
+               member_name,
+               member_money,
+               member_count,
+               home_run,
+               double_out,
+               mvp_cnt,
+               IFNULL(round((hit_cnt / try_cnt), 3), 0) as average
+        from member
         ]]>
     </select>
 </mapper>

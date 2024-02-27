@@ -13,4 +13,10 @@ public class BaseBallDto {
 
     private String home_run;
     private String double_out;
+    private String mvp_cnt;
+
+    private int try_cnt;
+    private int hit_cnt;
+
+    private float average;
 }
