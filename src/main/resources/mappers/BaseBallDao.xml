@@ -9,13 +9,14 @@
         select member_num,
                member_name,
                member_money,
-               member_count,
                home_run,
                double_out,
                mvp_cnt,
+               win_cnt,
+               lose_cnt,
                IFNULL(round((hit_cnt / try_cnt), 3), 0) as average
         from member
-        order by member_money desc, member_count desc, average desc, home_run desc , mvp_cnt desc
+        order by member_money desc, lose_cnt desc, win_cnt desc, average desc, home_run desc , mvp_cnt desc
         ]]>
     </select>
 </mapper>
