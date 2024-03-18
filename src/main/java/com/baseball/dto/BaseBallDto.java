@@ -22,4 +22,5 @@ public class BaseBallDto {
     private int lose_cnt;
 
     private float average;
+    private float win_percent;
 }

@@ -25,6 +25,7 @@ public class BaseBallController {
 
         List<BaseBallDto> list = baseBallDao.findAll();
         modelAndView.addObject("list", list);
+        modelAndView.addObject("total_money", baseBallDao.totalMoney());
 
         return modelAndView;
     }

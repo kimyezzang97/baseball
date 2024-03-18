@@ -14,9 +14,16 @@
                mvp_cnt,
                win_cnt,
                lose_cnt,
-               IFNULL(round((hit_cnt / try_cnt), 3), 0) as average
+               IFNULL(round((hit_cnt / try_cnt), 3), 0) as average,
+               ROUND(win_cnt / (win_cnt + lose_cnt) * 100 ,0 ) as win_percent
         from member
         order by member_money desc, lose_cnt desc, win_cnt desc, average desc, home_run desc , mvp_cnt desc
+        ]]>
+    </select>
+
+    <select id="totalMoney" resultType="int">
+        <![CDATA[
+        select SUM(member_money) as total_money from member
         ]]>
     </select>
 </mapper>

@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface BaseBallDao {
     public List<BaseBallDto> findAll();
+
+    public int totalMoney();
 }

@@ -15,9 +15,10 @@
         <th style="background-color: #eeeeee; text-align: center;">이름</th>
         <th style="background-color: #eeeeee; text-align: center;">잃은 돈</th>
         <th style="background-color: #eeeeee; text-align: center;">승/패</th>
-        <th style="background-color: #eeeeee; text-align: center;">타율</th>
+        <th style="background-color: #eeeeee; text-align: center; color: darkblue">승률</th>
+        <th style="background-color: #eeeeee; text-align: center; color: darkred">타율</th>
         <th style="background-color: #eeeeee; text-align: center;"><img src="img/homerun.png" width="23px"></th>
-        <th style="background-color: #eeeeee; text-align: center; color:red;">병살</th>
+<!--        <th style="background-color: #eeeeee; text-align: center; color:red;">병살</th>-->
         <th style="background-color: #eeeeee; text-align: center;"><u>MVP</u></th>
       </tr>
       </thead>
@@ -26,11 +27,16 @@
           <!-- <td th:text="${dto.getMember_money()}"></td> -->
           <td th:text="${#numbers.formatInteger(dto.getMember_money(), 0, 'COMMA')}"></td>
           <td th:text="${dto.getWin_cnt()} + '/' + ${dto.getLose_cnt()}"> </td>
+          <td th:text="${#numbers.formatInteger(dto.getWin_percent(), 1, 'COMMA')} + '%'"></td>
           <td th:text="${dto.getAverage() }"></td>
           <td th:text="${dto.getHome_run()}"></td>
-          <td th:text="${dto.getDouble_out()}"></td>
+<!--          <td th:text="${dto.getDouble_out()}"></td>-->
           <td th:text="${dto.getMvp_cnt()}"></td>
         </tr>
+       <tr>
+         <td colspan='3'><b>총 금액 : </b></td>
+         <td colspan='4' th:text="${#numbers.formatInteger(total_money, 0, 'COMMA')}" style="font-weight: bold"></td>
+       </tr>
     </table>
   </div>
 </div>
