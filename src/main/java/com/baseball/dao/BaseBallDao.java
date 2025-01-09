@@ -11,5 +11,7 @@ import java.util.List;
 public interface BaseBallDao {
     public List<BaseBallDto> findAll();
 
+    public List<BaseBallDto> findAll2025_1();
+
     public int totalMoney();
 }

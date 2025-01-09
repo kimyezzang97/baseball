@@ -19,14 +19,30 @@ public class BaseBallController {
     @Autowired
     private BaseBallDao baseBallDao;
 
+    @RequestMapping("/home")
+    public String home(){
+
+        return "home";
+    }
+
     @RequestMapping("/list")
-    public ModelAndView hello( Model model){
+    public ModelAndView hello(Model model){
         ModelAndView modelAndView = new ModelAndView();
 
         List<BaseBallDto> list = baseBallDao.findAll();
         modelAndView.addObject("list", list);
         modelAndView.addObject("total_money", baseBallDao.totalMoney());
 
+        return modelAndView;
+    }
+
+    @RequestMapping("/list/2025-1")
+    public ModelAndView hello2025_1(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<BaseBallDto> list = baseBallDao.findAll2025_1();
+        modelAndView.addObject("list", list);
+        modelAndView.setViewName("list2");
         return modelAndView;
     }
 

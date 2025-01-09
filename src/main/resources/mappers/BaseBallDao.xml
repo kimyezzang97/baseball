@@ -16,14 +16,38 @@
                lose_cnt,
                IFNULL(round((hit_cnt / try_cnt), 3), 0) as average,
                ROUND(win_cnt / (win_cnt + lose_cnt) * 100 ,0 ) as win_percent
-        from member
+        from member_2024
         order by member_money desc, lose_cnt desc, win_cnt desc, average desc, home_run desc , mvp_cnt desc
         ]]>
     </select>
 
     <select id="totalMoney" resultType="int">
         <![CDATA[
-        select SUM(member_money) as total_money from member
+        select SUM(member_money) as total_money from member_2024
+        ]]>
+    </select>
+
+    <select id="findAll2025_1" resultType="com.baseball.dto.BaseBallDto">
+        <![CDATA[
+        SELECT
+            m.member_id AS member_num, -- 선수 ID
+            m.name AS member_name, -- 선수 이름
+            SUM(rd.money) AS member_money, -- 잃은 돈 합계
+            SUM(rd.homerun) AS home_run, -- 홈런 횟수 합계
+            COUNT(CASE WHEN rd.win_status = 0 THEN 1 END) AS lose_cnt, -- 패배 횟수
+            COUNT(CASE WHEN rd.win_status = 1 THEN 1 END) AS win_cnt, -- 승리 횟수
+            SUM(rd.mvp) AS mvp_cnt, -- MVP 횟수 합계
+            IFNULL(ROUND(SUM(rd.hit) / SUM(rd.try), 3), 0) AS average, -- 타율
+            ROUND(COUNT(CASE WHEN rd.win_status = 1 THEN 1 END) /
+                  (COUNT(CASE WHEN rd.win_status = 1 THEN 1 END) + COUNT(CASE WHEN rd.win_status = 0 THEN 1 END)) * 100, 0) AS win_percent -- 승률
+        FROM
+            member m
+                JOIN
+            record_detail rd ON m.member_id = rd.member_id
+        GROUP BY
+            m.member_id, m.name
+        ORDER BY
+            member_money DESC, lose_cnt DESC, win_cnt DESC, average DESC, home_run DESC, mvp_cnt DESC
         ]]>
     </select>
 </mapper>
