@@ -33,6 +33,10 @@
                 <!--          <td th:text="${dto.getDouble_out()}"></td>-->
                 <td th:text="${dto.getMvp_cnt()}"></td>
             </tr>
+            <tr>
+                <td colspan='3'><b>총 금액 : </b></td>
+                <td colspan='4' th:text="${#numbers.formatInteger(total_money, 0, 'COMMA')}" style="font-weight: bold"></td>
+            </tr>
         </table>
     </div>
 </div>

@@ -50,4 +50,10 @@
             member_money DESC, lose_cnt DESC, win_cnt DESC, average DESC, home_run DESC, mvp_cnt DESC
         ]]>
     </select>
+
+    <select id="totalMoney_2025_1" resultType="int">
+        <![CDATA[
+        select SUM(money) as total_money from record_detail
+        ]]>
+    </select>
 </mapper>

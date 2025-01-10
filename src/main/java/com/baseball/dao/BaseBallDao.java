@@ -14,4 +14,6 @@ public interface BaseBallDao {
     public List<BaseBallDto> findAll2025_1();
 
     public int totalMoney();
+
+    public int totalMoney_2025_1();
 }
