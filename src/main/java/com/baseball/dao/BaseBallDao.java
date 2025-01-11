@@ -16,4 +16,6 @@ public interface BaseBallDao {
     public int totalMoney();
 
     public int totalMoney_2025_1();
+
+    public int allTotalMoney();
 }

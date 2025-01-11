@@ -45,6 +45,12 @@
                     <button type="button" class="btn btn-secondary custom-btn" onclick="meLong();">2025 시즌下</button>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <b style="font-weight: bold; font-size: 18px;">총 금액 : </b>
+                    <b th:text="${#numbers.formatInteger(total_money, 0, 'COMMA')}" style="font-weight: bold; font-size: 18px;"></b>
+                </td>
+            </tr>
         </table>
     </div>
 </div>

@@ -20,9 +20,12 @@ public class BaseBallController {
     private BaseBallDao baseBallDao;
 
     @RequestMapping("/home")
-    public String home(){
+    public ModelAndView home(){
+        ModelAndView modelAndView = new ModelAndView();
 
-        return "home";
+        modelAndView.setViewName("home");
+        modelAndView.addObject("total_money", baseBallDao.allTotalMoney());
+        return modelAndView;
     }
 
     @RequestMapping("/list")

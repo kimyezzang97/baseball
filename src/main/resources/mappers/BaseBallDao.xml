@@ -56,4 +56,10 @@
         select SUM(money) as total_money from record_detail
         ]]>
     </select>
+
+    <select id="allTotalMoney" resultType="int">
+        <![CDATA[
+        SELECT (SELECT SUM(money) FROM record_detail) + (SELECT SUM(member_money) FROM member_2024) AS total_money
+        ]]>
+    </select>
 </mapper>
