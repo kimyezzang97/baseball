@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -47,6 +49,26 @@ public class BaseBallController {
         modelAndView.addObject("list", list);
         modelAndView.addObject("total_money", baseBallDao.totalMoney_2025_1());
         modelAndView.setViewName("list2");
+        return modelAndView;
+    }
+
+    @RequestMapping("/history")
+    public ModelAndView history(Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        List<HashMap> list = baseBallDao.historyList();
+
+        modelAndView.addObject("list", list);
+        modelAndView.setViewName("history");
+        return modelAndView;
+    }
+
+    @GetMapping("/history/detail")
+    public ModelAndView historyDetail(Model model, @RequestParam("id") int id){
+        ModelAndView modelAndView = new ModelAndView();
+        List<HashMap> list = baseBallDao.historyDetail(id);
+
+        modelAndView.addObject("list", list);
+        modelAndView.setViewName("detail");
         return modelAndView;
     }
 

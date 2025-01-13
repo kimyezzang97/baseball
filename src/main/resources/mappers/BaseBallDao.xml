@@ -62,4 +62,19 @@
         SELECT (SELECT SUM(money) FROM record_detail) + (SELECT SUM(member_money) FROM member_2024) AS total_money
         ]]>
     </select>
+
+    <select id="historyList" resultType="Map">
+        <![CDATA[
+        SELECT * FROM record order by record_id desc
+        ]]>
+    </select>
+
+    <select id="historyDetail" parameterType="int" resultType="Map">
+        <![CDATA[
+        SELECT m.name, rd.win_status, rd.try, rd.hit, rd.homerun, rd.mvp
+        FROM record_detail rd
+        JOIN member m on rd.member_id = m.member_id
+        WHERE record_id = #{id}
+        ]]>
+    </select>
 </mapper>
