@@ -21,8 +21,8 @@ public class DataBaseConfig {
         sqlSessionFactory.setDataSource(dataSource);
 
         PathMatchingResourcePatternResolver resolver = new  PathMatchingResourcePatternResolver();
-        sqlSessionFactory.setMapperLocations(resolver.getResource("classpath:mappers/BaseBallDao.xml"));
-        return sqlSessionFactory.getObject();
+        sqlSessionFactory.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));
+        return sqlSessionFactory.getObject(); //classpath:mappers/**/*.xml
 
     }
 
