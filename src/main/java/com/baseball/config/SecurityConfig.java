@@ -34,7 +34,8 @@ public class SecurityConfig {
                 // 경로 인증 인가 설정
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/login", "/logout", "/join","/list",
-                                "/home").permitAll() // 누구나 경로 허용
+                                "/home", "/list", "/list/2025-1", "/history", "/history/detail",
+                                        "/index").permitAll() // 누구나 경로 허용
 
                         .requestMatchers("/admin").hasRole("ADMIN") // admin 권한자만 사용
                         .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN")
