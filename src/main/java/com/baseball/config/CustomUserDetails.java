@@ -25,7 +25,9 @@ public class CustomUserDetails implements UserDetails {
 
             @Override
             public String getAuthority() {
-                return userDto.getRole();
+                System.out.println("getRole" + userDto.getRole());
+                return
+                        userDto.getRole();
             }
         });
 

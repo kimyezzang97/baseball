@@ -24,7 +24,8 @@ public class SecurityConfig {
                 // form 로그인 방식 사용
                 .formLogin(form -> form
                         //.loginPage("/login")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/admin", true)
+
                         .permitAll()
                 )
 
@@ -35,7 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/login", "/logout", "/join","/list",
                                 "/home", "/list", "/list/2025-1", "/history", "/history/detail",
-                                        "/index").permitAll() // 누구나 경로 허용
+                                        "/index","admin/game").permitAll() // 누구나 경로 허용
 
                         .requestMatchers("/admin").hasRole("ADMIN") // admin 권한자만 사용
                         .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN")

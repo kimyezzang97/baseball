@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width" , initial-scale="1">
+<style>
+    .custom-btn {
+        width: 150px;    /* 가로 크기 */
+        height: 50px;    /* 세로 크기 */
+        font-size: 18px; /* 글자 크기 */
+        padding: 10px;   /* 내부 여백 */
+    }
+</style>
+<body>
+<div class="container">
+    <div class="">
+        <table class="table" style="text-align: center; border: 1px solid #dddddd">
+            <tr>
+                <th style="background-color: #082359; font-size: 25px; text-align: center;
+                        color:white;">관리자 페이지</th>
+            </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/admin/game}" >
+                        <button type="button" class="btn btn-primary custom-btn">경기 추가</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

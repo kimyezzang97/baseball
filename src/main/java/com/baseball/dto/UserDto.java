@@ -17,4 +17,12 @@ public class UserDto {
     private String role;
 
     private String password;
+
+    public UserDto(Long userId, String id, String name, String role, String password) {
+        user_id = userId;
+        this.id = id;
+        this.name = name;
+        this.role = role;
+        this.password = password;
+    }
 }
