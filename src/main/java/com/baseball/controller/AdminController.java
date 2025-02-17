@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -25,6 +27,8 @@ public class AdminController {
     @RequestMapping("/game")
     public ModelAndView game(){
         ModelAndView modelAndView = new ModelAndView();
+        List<String> list = userDao.getNameList();
+        modelAndView.addObject("nameList", list);
 
         modelAndView.setViewName("admin/game");
         return modelAndView;
