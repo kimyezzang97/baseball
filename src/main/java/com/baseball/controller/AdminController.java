@@ -2,8 +2,10 @@ package com.baseball.controller;
 
 import com.baseball.dao.BaseBallDao;
 import com.baseball.dao.UserDao;
+import com.baseball.dto.admin.GameForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,4 +35,20 @@ public class AdminController {
         modelAndView.setViewName("admin/game");
         return modelAndView;
     }
+
+    @RequestMapping("/game/register")
+    public String registerGame(@ModelAttribute GameForm gameForm){
+        System.out.println("경기 날짜: " + gameForm.getGameDate());
+        System.out.println("승리 팀: " + gameForm.getWinPlayerName());
+        for(String str : gameForm.getWinPlayerName()){
+            System.out.println(str);
+        }
+
+        System.out.println("패배 팀: " + gameForm.getLosePlayerName());
+        for(String str : gameForm.getLosePlayerName()){
+            System.out.println(str);
+        }
+        return "redirect:/game/list";
+    }
+
 }

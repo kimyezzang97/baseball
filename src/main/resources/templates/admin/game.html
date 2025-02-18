@@ -69,106 +69,108 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <body>
 <div class="container">
-    <div class="">
-        <div class="date-container">
-            <label for="gameDate">[경기날짜] </label>
-            <input type="date" id="gameDate" name="game_date" required>
+    <form th:action="@{/admin/game/register}"  method="post">
+        <div class="">
+            <div class="date-container">
+                <label for="gameDate">[경기날짜] </label>
+                <input type="date" id="gameDate" name="gameDate" required>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info">
+                    승리 팀
+                </li>
+            </ul>
+            <table class="table table-bordered border-success-subtle">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">이름</th> <!-- 25 -->
+                        <th style="text-align: center;">타율</th> <!-- 20 -->
+                        <th style="text-align: center;">안타</th> <!-- 10 -->
+                        <th style="text-align: center;">홈런</th> <!-- 10 -->
+                        <th style="text-align: center;">MVP</th> <!-- 10 -->
+                        <th style="text-align: center;">잃은 돈</th> <!-- 25 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="winPlayer, index : ${#numbers.sequence(0,3)}">
+                        <td style="width: 22%;">
+                            <select class="form-control" th:id="|winPlayerName${index.index}|" th:name="|winPlayerName[${index.index}]|">
+                                <option value="" disabled selected>선택</option>
+                                <option th:each="name : ${nameList}" th:value="${name}" th:text="${name}"></option>
+                            </select>
+                        </td>
+                        <td style="width: 20%;">
+                            <input type="number" step="0.001" class="form-control" th:id="|winPlayerHitPercent${index.index}|" th:name="|winPlayerHitPercent[${index.index}]|" >
+                        </td>
+                        <td style="width: 14%;">
+                            <input type="text" class="form-control" th:id="|winPlayerHit${index.index}|" inputmode="numeric" th:name="|winPlayerHit[${index.index}]|">
+                        </td>
+                        <td style="width: 14%;">
+                            <input type="text" class="form-control" th:id="|winPlayerHomerun${index.index}|" inputmode="numeric" th:name="|winPlayerHomerun[${index.index}]|">
+                        </td>
+                        <td style ="width:6%;">
+                            <input type="checkbox" class="player-mvp" th:id="|winPlayerMVP${index.index}|" th:name="|winPlayerMVP[${index.index}]|">
+                        </td>
+                        <td style="width: 24%;">
+                            <input type="number" class="form-control" th:id="|winPlayerMoney${index.index}|" inputmode="numeric" th:name="|winPlayerMoney[${index.index}]|">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-danger">
+                    패배 팀
+                </li>
+            </ul>
+            <table class="table table-bordered border-success-subtle">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">이름</th> <!-- 25 -->
+                        <th style="text-align: center;">타율</th> <!-- 20 -->
+                        <th style="text-align: center;">안타</th> <!-- 10 -->
+                        <th style="text-align: center;">홈런</th> <!-- 10 -->
+                        <th style="text-align: center;">MVP</th> <!-- 10 -->
+                        <th style="text-align: center;">잃은 돈</th> <!-- 25 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="losePlayer, index : ${#numbers.sequence(0,3)}">
+                        <td style="width: 22%;">
+                            <!-- <input type="text" class="form-control" th:id="|losePlayerName${index}|"> -->
+                            <select class="form-control" th:id="|losePlayerName${index.index}|" th:name="|losePlayerName[${index.index}]|">
+                                <option value="" disabled selected>선택</option>
+                                <!--/*@thymesVar id="list" type=""*/-->
+                                <option th:each="name : ${nameList}" th:value="${name}" th:text="${name}"></option>
+                            </select>
+                        </td>
+                        <td style="width: 20%;">
+                            <input type="number" step="0.001" class="form-control" th:id="|losePlayerHitPercent${index.index}|" th:name="|losePlayerHitPercent[${index.index}]|">
+                        </td>
+                        <td style="width: 14%;">
+                            <input type="text" class="form-control" th:id="|losePlayerHit${index.index}|" inputmode="numeric" th:name="|losePlayerHit[${index.index}]|">
+                        </td>
+                        <td style="width: 14%;">
+                            <input type="text" class="form-control" th:id="|losePlayerHomerun${index.index}|" inputmode="numeric" th:name="|losePlayerHomerun[${index.index}]|">
+                        </td>
+                        <td style ="width:6%;">
+                            <input type="checkbox" class="player-mvp" th:id="|losePlayerMVP${index.index}|" th:name="|losePlayerMVP[${index.index}]|">
+                        </td>
+                        <td style="width: 24%;">
+                            <input type="text" class="form-control" th:id="|losePlayerMoney${index.index}|" inputmode="numeric" th:name="|losePlayerMoney[${index.index}]|">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <button type="submit" class="submit-button">경기 등록</button>
+            </div>
         </div>
-
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-info">
-                승리 팀
-            </li>
-        </ul>
-        <table class="table table-bordered border-success-subtle">
-            <thead>
-                <tr>
-                    <th style="text-align: center;">이름</th> <!-- 25 -->
-                    <th style="text-align: center;">타율</th> <!-- 20 -->
-                    <th style="text-align: center;">안타</th> <!-- 10 -->
-                    <th style="text-align: center;">홈런</th> <!-- 10 -->
-                    <th style="text-align: center;">MVP</th> <!-- 10 -->
-                    <th style="text-align: center;">잃은 돈</th> <!-- 25 -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="winPlayer, index : ${#numbers.sequence(1,4)}">
-                    <td style="width: 22%;">
-                        <select class="form-control" th:id="|losePlayerName${index}|" name="winPlayerName${index}">
-                            <option value="" disabled selected>선택</option>
-                            <option th:each="name : ${nameList}" th:value="${name}" th:text="${name}"></option>
-                        </select>
-                    </td>
-                    <td style="width: 20%;">
-                        <input type="number" step="0.001" class="form-control" th:id="|winPlayerHitPercent${index}|" >
-                    </td>
-                    <td style="width: 14%;">
-                        <input type="text" class="form-control" th:id="|winPlayerHit${index}|" inputmode="numeric">
-                    </td>
-                    <td style="width: 14%;">
-                        <input type="text" class="form-control" th:id="|winPlayerHomerun${index}|" inputmode="numeric">
-                    </td>
-                    <td style ="width:6%;">
-                        <input type="checkbox" class="player-mvp" th:id="|winPlayerMVP${index}|">
-                    </td>
-                    <td style="width: 24%;">
-                        <input type="number" class="form-control" th:id="|winPlayerMoney${index}|" inputmode="numeric">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <br>
-
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-danger">
-                패배 팀
-            </li>
-        </ul>
-        <table class="table table-bordered border-success-subtle">
-            <thead>
-                <tr>
-                    <th style="text-align: center;">이름</th> <!-- 25 -->
-                    <th style="text-align: center;">타율</th> <!-- 20 -->
-                    <th style="text-align: center;">안타</th> <!-- 10 -->
-                    <th style="text-align: center;">홈런</th> <!-- 10 -->
-                    <th style="text-align: center;">MVP</th> <!-- 10 -->
-                    <th style="text-align: center;">잃은 돈</th> <!-- 25 -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="losePlayer, index : ${#numbers.sequence(1,4)}">
-                    <td style="width: 22%;">
-                        <!-- <input type="text" class="form-control" th:id="|losePlayerName${index}|"> -->
-                        <select class="form-control" th:id="|losePlayerName${index}|" name="losePlayerName${index}">
-                            <option value="" disabled selected>선택</option>
-                            <!--/*@thymesVar id="list" type=""*/-->
-                            <option th:each="name : ${nameList}" th:value="${name}" th:text="${name}"></option>
-                        </select>
-                    </td>
-                    <td style="width: 20%;">
-                        <input type="number" step="0.001" class="form-control" th:id="|losePlayerHitPercent${index}|">
-                    </td>
-                    <td style="width: 14%;">
-                        <input type="text" class="form-control" th:id="|losePlayerHit${index}|" inputmode="numeric">
-                    </td>
-                    <td style="width: 14%;">
-                        <input type="text" class="form-control" th:id="|losePlayerHomerun${index}|" inputmode="numeric">
-                    </td>
-                    <td style ="width:6%;">
-                        <input type="checkbox" class="player-mvp" th:id="|losePlayerMVP${index}|">
-                    </td>
-                    <td style="width: 24%;">
-                        <input type="text" class="form-control" th:id="|losePlayerMoney${index}|" inputmode="numeric">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <button type="submit" class="submit-button">경기 등록</button>
-        </div>
-    </div>
+    </form>
 </div>
 </body>
 </html>
