@@ -22,4 +22,6 @@ public class GameForm {
     private List<Integer> losePlayerHomerun;
     private List<Boolean> losePlayerMVP;
     private List<Integer> losePlayerMoney;
+
+    private int mvpIndex;
 }

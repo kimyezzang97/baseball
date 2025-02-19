@@ -77,4 +77,16 @@
         WHERE record_id = #{id}
         ]]>
     </select>
+
+    <!-- insertGame -->
+    <insert id="insertRecord" parameterType="Map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO record(game_date)
+        VALUES (#{date})
+    </insert>
+
+    <!-- insertGame -->
+    <insert id="insertRecordDetail" parameterType="Map">
+        INSERT INTO record_detail(record_id, member_id, win_status, try, hit, homerun, mvp, money)
+        VALUES (#{detailId}, (SELECT member_id from member where name = #{name} ), #{winStatus}, #{try}, #{hit}, #{homerun}, #{mvp}, #{money})
+    </insert>
 </mapper>

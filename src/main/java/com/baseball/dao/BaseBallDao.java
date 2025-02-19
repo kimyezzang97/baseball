@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Mapper
 @Repository
@@ -24,4 +25,10 @@ public interface BaseBallDao {
     public List<HashMap> historyList();
 
     public List<HashMap> historyDetail(int id);
+
+
+    // game insert
+    public int insertRecord(Map<String, Object> map);
+
+    public void insertRecordDetail(Map<String, Object> map);
 }
