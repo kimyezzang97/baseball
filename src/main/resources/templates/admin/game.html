@@ -60,16 +60,19 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     function updateMVPIndex() {
-        validateMVPSelection();
+        if(validateMVPSelection()){
+            let checkboxes = document.querySelectorAll(".player-mvp");
+            let hiddenInput = document.getElementById("mvpIndex");
 
-        let checkboxes = document.querySelectorAll(".player-mvp");
-        let hiddenInput = document.getElementById("mvpIndex");
-
-        checkboxes.forEach((checkbox, index) => {
-            if (checkbox.checked) {
-                hiddenInput.value = index; // 체크된 인덱스 저장
-            }
-        });
+            checkboxes.forEach((checkbox, index) => {
+                if (checkbox.checked) {
+                    hiddenInput.value = index; // 체크된 인덱스 저장
+                }
+            });
+        } else {
+            event.preventDefault(); // 🚨 submit 방지
+            return false;
+        }
     }
 
     function validateMVPSelection() {
