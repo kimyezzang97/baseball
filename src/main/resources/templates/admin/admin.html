@@ -6,6 +6,29 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Latest compiled and minified CSS -->
+<script>
+    function addMember() {
+        let name = prompt("추가할 멤버 이름을 입력하세요:");
+        if (name && name.trim() !== "") {
+            fetch("/admin/members/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name.trim() })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("멤버 추가 성공!");
+                        window.location.href = "/admin"
+                        // location.reload(); // 페이지 새로고침하여 업데이트 반영
+                    } else {
+                        alert("멤버 추가 실패!");
+                    }
+                });
+        } else {
+            alert("이름을 정확하게 해주세요.");
+        }
+    }
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <style>
@@ -29,6 +52,11 @@
                     <a th:href="@{/admin/game}" >
                         <button type="button" class="btn btn-primary custom-btn">경기 추가</button>
                     </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-yellow custom-btn" onclick="addMember()">멤버 추가</button>
                 </td>
             </tr>
         </table>

@@ -4,9 +4,12 @@ import com.baseball.dao.BaseBallDao;
 import com.baseball.dao.UserDao;
 import com.baseball.dto.admin.GameForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -86,6 +89,22 @@ public class AdminController {
         }
 
         return "redirect:/admin";
+    }
+
+    @PostMapping("/members/add")
+    public ResponseEntity<String> addMember(@RequestBody Map<String, String> request) {
+        String name = request.get("name");
+        if (name != null && !name.trim().isEmpty()) {
+            try {
+                userDao.memberAdd(name);
+                return ResponseEntity.ok("멤버 추가 성공");
+            } catch (Exception e){
+                e.printStackTrace();
+                return ResponseEntity.badRequest().body("멤버 추가 실패");
+            }
+
+        }
+        return ResponseEntity.badRequest().body("멤버 추가 실패");
     }
 
 }

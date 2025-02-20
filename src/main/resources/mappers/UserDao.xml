@@ -15,4 +15,10 @@
         SELECT name FROM member
         ]]>
     </select>
+
+    <insert id="memberAdd" parameterType="String">
+        INSERT INTO member(name)
+        VALUES(#{name})
+    </insert>
+
 </mapper>
